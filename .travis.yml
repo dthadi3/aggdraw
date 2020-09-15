@@ -18,10 +18,12 @@ env:
 matrix:
   include:
   - os: linux
+  - arch: ppc64le
     env:
     - BUILDMODE=ASTROPY
     - PYTHON_VERSION=2.7
   - os: linux
+  - arch: ppc64le
     env:
     - BUILDMODE=ASTROPY
     - PYTHON_VERSION=3.7
