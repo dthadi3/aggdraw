@@ -1,5 +1,6 @@
 language: generic
 env:
+arch: ppc64le
   global:
   - NUMPY_VERSION=stable
   - MAIN_CMD='python setup.py'
