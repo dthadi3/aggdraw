@@ -1,6 +1,5 @@
 language: generic
 env:
-arch: ppc64le
   global:
   - NUMPY_VERSION=stable
   - MAIN_CMD='python setup.py'
@@ -16,9 +15,29 @@ arch: ppc64le
   - TWINE_USERNAME='dhoese'
   # TWINE_PASSWORD
   - secure: Cmwxk41Nd+cu7l5Qhl7ZyCuwYg8WGCT53wqFBZMKIDZkNPVsnfaE8G9s1ZPTlpyoMEL5TioYTVjbjPXZD8M3z7OHHicXRP3mO53PrUDsETEl6/gR2h309ux/cWdOGgLd9s6CKT6wjtCT8Clft1cz61Y2ABOEtyTq3mrvPI0PyxE=
+arch: 
+  - ppc64le
+  - AMD64
 matrix:
   include:
   - os: linux
+    env:
+    - BUILDMODE=ASTROPY
+    - PYTHON_VERSION=2.7
+  - os: linux
+    env:
+    - BUILDMODE=ASTROPY
+    - PYTHON_VERSION=3.7
+  - os: osx
+    env:
+    - BUILDMODE=ASTROPY
+    - PYTHON_VERSION=2.7
+  - os: osx
+    env:
+    - BUILDMODE=ASTROPY
+    - PYTHON_VERSION=3.7
+  #Power Jobs    
+  - os: linux
   - arch: ppc64le
     env:
     - BUILDMODE=ASTROPY
@@ -28,14 +47,7 @@ matrix:
     env:
     - BUILDMODE=ASTROPY
     - PYTHON_VERSION=3.7
-  - os: osx
-    env:
-    - BUILDMODE=ASTROPY
-    - PYTHON_VERSION=2.7
-  - os: osx
-    env:
-    - BUILDMODE=ASTROPY
-    - PYTHON_VERSION=3.7
+    
   - sudo: required
     language: python
     services:
