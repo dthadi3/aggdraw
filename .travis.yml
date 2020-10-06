@@ -8,11 +8,10 @@ env:
   - EVENT_TYPE='push pull_request'
   - SETUP_CMD='test'
   - CONDA_CHANNELS='conda-forge'
-  - CONDA_CHANNEL_PRIORITY='True'
+  - CONDA_CHANNEL_PRIORITY='strict'
   - CIBW_TEST_REQUIRES='numpy pillow pytest'
   - CIBW_TEST_COMMAND='python {project}/selftest.py'
   - CIBW_BEFORE_BUILD_LINUX='yum install -y freetype-devel'
-  - CIBW_SKIP='cp34-* cp35-* cp39-* pp27-* pp36-*'
   - TWINE_USERNAME='dhoese'
   # TWINE_PASSWORD
   - secure: Cmwxk41Nd+cu7l5Qhl7ZyCuwYg8WGCT53wqFBZMKIDZkNPVsnfaE8G9s1ZPTlpyoMEL5TioYTVjbjPXZD8M3z7OHHicXRP3mO53PrUDsETEl6/gR2h309ux/cWdOGgLd9s6CKT6wjtCT8Clft1cz61Y2ABOEtyTq3mrvPI0PyxE=
@@ -41,6 +40,24 @@ matrix:
     env: BUILDMODE=CIBUILDWHEEL
   - os: osx
     env: BUILDMODE=CIBUILDWHEEL
+  #Power Jobs    
+  - os: linux
+  - arch: ppc64le
+    env:
+    - BUILDMODE=ASTROPY
+    - PYTHON_VERSION=2.7
+  - os: linux
+  - arch: ppc64le
+    env:
+    - BUILDMODE=ASTROPY
+    - PYTHON_VERSION=3.7
+  - sudo: required
+    language: python
+    services:
+    - docker
+    env: BUILDMODE=CIBUILDWHEEL
+    arch: ppc64le
+     
 install:
 - source ci/travis-install.sh
 script:
